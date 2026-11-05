@@ -3,6 +3,8 @@
 مشغّل IPTV عربي خفيف وسريع يعمل في المتصفح. واجهة سينمائية داكنة باتجاه RTL، وبحث فوري، ومفضلة،
 وسجل مشاهدة، ودعم M3U وXtream Codes، وتشغيل HLS وMP4 دون حسابات أو إعلانات.
 
+**النسخة المباشرة:** <https://shasha.alssamer.workers.dev> (Cloudflare Workers)
+
 ## المزايا
 
 - إضافة قوائم التشغيل بأربع طرق: رابط M3U، ملف من الجهاز، لصق المحتوى، أو حساب Xtream Codes.
@@ -96,6 +98,10 @@ pnpm cf:deploy
 ```
 
 يعطيك رابطاً على `*.workers.dev` مجاناً. راجع `wrangler.jsonc` لإضافة D1/KV/R2 عند الحاجة.
+
+> **بناء Windows:** يمنع Windows إنشاء symlink بدون «وضع المطوّر»، ولهذا يحتوي المستودع على رقعة
+> صغيرة في `patches/@opennextjs__aws@4.1.12.patch` تستبدلها بروابط junction عند الحاجة. تُطبَّق
+> تلقائياً عبر `pnpm install`، وعلى Linux/macOS يعمل البناء الأصلي كما هو.
 
 > **مهم:** يحتاج شاشة إلى خادم يشغّل Route Handlers من أجل `/api/playlist` و`/api/xtream`،
 > لذلك لا يدعم التصدير الثابت (GitHub Pages). استخدم Cloudflare Workers أو أي خادم Node يدعم Next.js.

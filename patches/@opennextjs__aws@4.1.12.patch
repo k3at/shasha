@@ -1,0 +1,27 @@
+diff --git a/dist/build/copyTracedFiles.js b/dist/build/copyTracedFiles.js
+index 9090f0ffc9c7346950fbf6e0bcabb10944f7ba8f..a6e529b33af2c109c00dc48e19431b3cbebb22c5 100644
+--- a/dist/build/copyTracedFiles.js
++++ b/dist/build/copyTracedFiles.js	
+@@ -237,7 +237,21 @@ File ${serverPath} does not exist
+                 symlinkSync(symlink, to);
+             }
+             catch (e) {
+-                if (e.code !== "EEXIST") {
++                if (e.code === "EPERM" || e.code === "EACCES") {
++                    // Windows forbids symlinks without Developer Mode.
++                    // Directories use a junction (no privilege needed), files are copied.
++                    if (existsSync(from) && statSync(from).isDirectory()) {
++                        // Next writes absolute link targets, so rebuild the link relative to
++                        // the mirrored output tree before creating a junction.
++                        const absoluteTarget = path.resolve(path.dirname(from), symlink);
++                        const mirroredTarget = path.resolve(path.dirname(to), path.relative(path.dirname(from), absoluteTarget));
++                        symlinkSync(mirroredTarget, to, "junction");
++                    }
++                    else {
++                        copyFileAndMakeOwnerWritable(from, to);
++                    }
++                }
++                else if (e.code !== "EEXIST") {
+                     throw e;
+                 }
+             }
