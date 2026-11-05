@@ -103,6 +103,9 @@ pnpm cf:deploy
 > صغيرة في `patches/@opennextjs__aws@4.1.12.patch` تستبدلها بروابط junction عند الحاجة. تُطبَّق
 > تلقائياً عبر `pnpm install`، وعلى Linux/macOS يعمل البناء الأصلي كما هو.
 
+بديل: شغّل سير العمل `.github/workflows/deploy-cloudflare.yml` يدوياً بعد إضافة السرّين
+`CLOUDFLARE_API_TOKEN` و`CLOUDFLARE_ACCOUNT_ID` في إعدادات المستودع ← Secrets and variables ← Actions.
+
 > **مهم:** يحتاج شاشة إلى خادم يشغّل Route Handlers من أجل `/api/playlist` و`/api/xtream`،
 > لذلك لا يدعم التصدير الثابت (GitHub Pages). استخدم Cloudflare Workers أو أي خادم Node يدعم Next.js.
 
