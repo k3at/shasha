@@ -17,6 +17,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - الصفحات مكوّنات خادم افتراضياً. أضف `"use client"` فقط عند الحاجة لتفاعل أو hooks.
 - المسارات الديناميكية: `params` و`searchParams` غير متزامنة (`await`). استخدم `proxy.ts` بدل `middleware.ts`.
 - قبل إنهاء أي مهمة: `pnpm lint && pnpm typecheck && pnpm build && pnpm test`.
-- للنشر: Cloudflare عبر `pnpm cf:deploy`، أو GitHub Pages عبر `pnpm build:static`.
+- للنشر: Cloudflare عبر `pnpm cf:deploy` (المشروع يحتاج خادماً يدعم Route Handlers).
 - لا ترفع أسراراً إلى Git. استخدم `.env.local` أو أسرار GitHub/Cloudflare.
 - اقرأ `README.md` و`docs/` في مجلد المشروع قبل تغيير الإعدادات.

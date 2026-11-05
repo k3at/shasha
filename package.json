@@ -16,14 +16,14 @@
     "format:check": "prettier --check .",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "build:static": "node scripts/build-static.mjs",
+    "visual": "node scripts/visual-check.mjs",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare preview",
     "cf:deploy": "opennextjs-cloudflare deploy",
-    "cf:static": "node scripts/build-static.mjs && wrangler deploy -c wrangler.static.jsonc",
     "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
+    "hls.js": "^1.7.4",
     "next": "16.4.2",
     "react": "19.3.0",
     "react-dom": "19.3.0"

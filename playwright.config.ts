@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = Number(process.env.PORT ?? 3000);
+const PORT = Number(process.env.PORT ?? 3100);
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${PORT}`;
 
 export default defineConfig({
@@ -24,7 +24,7 @@ export default defineConfig({
     ? undefined
     : {
         // نبني ونختبر نسخة الإنتاج لضمان مطابقة ما سيُنشر فعلياً.
-        command: "pnpm build && pnpm start --port 3000",
+        command: `pnpm build && pnpm start --port ${PORT}`,
         url: baseURL,
         reuseExistingServer: !process.env.CI,
         timeout: 240_000,
